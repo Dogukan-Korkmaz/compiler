@@ -1,5 +1,5 @@
 #Bu dosyada gcc ile build işlemi yapılıyor.
-OBJECTS= ./build/compiler.o ./builds/cprocess.o
+OBJECTS= ./build/compiler.o ./build/cprocess.o
 # "-I./" Dahil etme dizisini göreceli hale getirir.
 INCLUDES= -I./
 
@@ -10,8 +10,8 @@ all: ${OBJECTS}
 ./build/compiler.o: ./compiler.c
 	gcc ./compiler.c ${INCLUDES} -o ./build/compiler.o -g -c
 
-./build/compiler.o: ./cprocess.c
-	gcc ./compiler.c ${INCLUDES} -o ./build/compiler.o -g -c
+./build/cprocess.o: ./cprocess.c
+	gcc ./cprocess.c ${INCLUDES} -o ./build/cprocess.o -g -c
 
 # clean komutu main dosyasını ve bütün objeleri silecek.
 clean:

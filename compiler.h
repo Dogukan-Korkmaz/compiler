@@ -18,8 +18,8 @@ struct compile_process
     struct compile_process_input_file
     {
         FILE* fp;
-        const char* abs_path
-    }cfile;
+        const char* abs_path;
+    } cfile;
     
     FILE* ofile;
 };
