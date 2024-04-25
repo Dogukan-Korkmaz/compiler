@@ -26,3 +26,20 @@ struct compile_process* compile_process_create(const char* filename, const char*
     process->ofile = out_file;
     return process;
 }
+
+//Sözcüksel analiz[2] Derleyici hareket fonksyonları.
+
+char compile_process_next_char(struct lex_process* lex_process)
+{
+    struct compile_process* compiler = lex_process->compiler;
+    compiler->pos.col += 1;
+    char c = getc(compiler->cfile.fp);
+
+    /*Her satır sonu gizli bir '\n' sembolü vardır.Bu satırda daha karakter olmadığını belirtir
+    Bu durumda satır değerine 1 ekleyerek ve sütün değerini 0 yaparak,derleyiciyi bir alt satırın başına yönlendirilir.*/
+    if (c == '\n')
+    {
+        compiler->pos.line += 1;
+        compiler->pos.col = 0;
+    }
+}
