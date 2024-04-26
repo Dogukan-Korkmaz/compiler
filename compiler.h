@@ -2,7 +2,7 @@
 #define PEACHCOMPILER_H
 
 #include <stdio.h>
-#include <stdboot.h>
+#include <stdbool.h>
 
 // Dosyanın pozisyonu.
 struct pos
@@ -54,7 +54,7 @@ struct token
     bool whitespace;
 
     const char* between_brackets;
-}
+};
 
 // Sözcükler arası geçiş için gerekli fonksyonlar.
 struct lex_process;
@@ -65,7 +65,7 @@ struct lex_process_functions
 {
     LEX_PROCESS_NEXT_CHAR next_char;
     LEX_PROCESS_PEEK_CHAR peek_char;
-    LEX_PROCESS_PUSH_CHAR psuh_char;
+    LEX_PROCESS_PUSH_CHAR push_char;
 };
 
 // Sözcüksel analiz işlemi.(Sözcük derken string anlamında değil her şey olabilir.Örn. 3, / ,  , ü)
@@ -82,7 +82,7 @@ struct lex_process
 
     /*Derleyicinin anlayamadığı ama kullanıcının anlayabildiği veriler için.*/
     void* private;
-}
+};
 
 
 // Hata mesajları burada tutuluyor.
