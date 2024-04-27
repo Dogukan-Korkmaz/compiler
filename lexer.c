@@ -38,7 +38,7 @@ static char nextc()
 
 static void pushc(char c)
 {
-    lex_process->functions->push_char(lex_process, c);
+    lex_process->function->push_char(lex_process, c);
 }
 
 static struct pos lex_file_position()

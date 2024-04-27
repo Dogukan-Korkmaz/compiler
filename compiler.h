@@ -87,7 +87,7 @@ struct lex_process
 {
     struct pos pos;
     struct vector* token_vec;
-    struct compile_proccess* compiler;
+    struct compile_process* compiler;
 
     // lex(sözcük) kaç satır arasında olduğunu tutan değişken.örn. ((50))
     int current_expression_count;
