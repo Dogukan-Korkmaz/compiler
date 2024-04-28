@@ -4,6 +4,7 @@
 #include <string.h>
 #include "helpers/vector.h"
 #include "helpers/buffer.h"
+#include <assert.h>
 
 #define LEX_GETC_IF(buffer, c, exp)     \
     for (c = peekc(); exp; c = peekc()) \
@@ -11,6 +12,29 @@
         buffer_write(buffer, c);        \
         nextc();                        \
     }
+
+
+/*String karakterlerin token hale gelmesini sağlayan fonksyon, iki argümanı var, biri string
+karakter dizisinin başladığı diğeri bittiği zamanı algılamak için örn. "merhaba dünya" burada arüman tırnak işaretidir.*/
+static struct token* token_make_string(char start_delim, char end_delim)
+{
+    struct buffer* buf = buffer_create();
+    assert(nextc() == start_delim);
+    char c = nextc();
+    for(; c != end_delim && c != EOF; c=nextc())//Karakter limitin sonuna veya dosyanın sonuna gelene kadar sonraki karakteri okuaycaktır. 
+    {
+        if (c == '\\')
+        {
+            /*'\n' gibi kaçış işaretleri burada algılanacak.Buraya daha sonra geri döneceğim.!!!*/
+            continue;
+        }
+
+        buffer_write(buf, c);
+    }
+
+    buffer_write(buf, 0x00);
+    return token_create(&(struct token){.type=TOKEN_TYPE_STRING,.sval=buffer_ptr(buf)});  
+}
 
 struct token* read_next_token(); // lexer.c belgesinde ilk bu fonksyonun çalışmasını istiyoruz.
 
@@ -113,6 +137,10 @@ struct token* read_next_token()
         token = token_make_number();
         break;
 
+
+        case '"':
+        token = token_make_string('"', '"');//String karakterler tırnak işareti ile algılanır.
+        break;
         // Boşulukları görmezden geleceğiz.    
         case ' ': // Boşluk
         case '\t': // Sekme(tab) boşluğu
