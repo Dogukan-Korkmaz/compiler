@@ -57,5 +57,5 @@ int compile_file(const char* filename, const char* out_filename, int flags)
 
     // Kod oluşturma işlemini
     
-    return COMPILER_FAILED_WITH_ERRORS; 
+    return COMPILER_FILE_COMPILED_OK; 
 }

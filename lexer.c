@@ -46,9 +46,9 @@ static struct pos lex_file_position()
     return lex_process->pos;
 }
 
-struct token* token_create(struct token* token)
+struct token* token_create(struct token* _token)
 {
-    memcpy(&tmp_token, token, sizeof(struct token));
+    memcpy(&tmp_token, _token, sizeof(struct token));
     tmp_token.pos = lex_file_position();
     return &tmp_token;
 }

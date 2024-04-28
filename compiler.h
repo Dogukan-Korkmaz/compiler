@@ -29,7 +29,7 @@ struct pos
 enum
 {
     LEXICAL_ANALYSIS_ALL_OK,
-    LEXICAL_ANALYSIS_ERROR
+    LEXICAL_ANALYSIS_INPUT_ERROR
 };
 
 // Token tipleri için.(yeni satır,sembol,string,yorum satırı...vb)
