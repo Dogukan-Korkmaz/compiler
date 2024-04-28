@@ -1,7 +1,7 @@
 // Ana Sözcüksel analiz bloğu.
 
 #include "compiler.h"
-#include "string.h"
+#include <string.h>
 #include "helpers/vector.h"
 #include "helpers/buffer.h"
 
